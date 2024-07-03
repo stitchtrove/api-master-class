@@ -8,7 +8,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
-        api: __DIR__ . '/../routes/api.php',
+        api: __DIR__ . '/../routes/api.php', // Ensure this path is correct
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
         then: function ($router) {
@@ -19,8 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // Add your middleware here
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        // Handle exceptions here
     })->create();
