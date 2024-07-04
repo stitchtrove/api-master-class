@@ -15,19 +15,19 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'type' => 'user',
+            'type' => 'author',
             'id' => $this->id,
             'attributes' => [
                 'name' => $this->name,
                 'email' => $this->email,
-                $this->mergeWhen($request->routeIs('api.v1.users.*'), [
+                $this->mergeWhen($request->routeIs('api.v1.authors.*'), [
                     'emailVerifiedAt' => $this->email_verified_at,
                     'createdAt' => $this->created_at,
                     'updatedAt' => $this->updated_at,
                 ]),
                 'includes' => TicketResource::collection($this->whenLoaded('tickets')),
                 'links' => [
-                    'self' => route('api.v1.users.show', ['user' => $this->id])
+                    'self' => route('api.v1.authors.show', ['author' => $this->id])
                 ]
             ]
         ];
